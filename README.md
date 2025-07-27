@@ -1,4 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Next.js Shell with Untitled UI
+
+This is a barebones Next.js application with **Untitled UI components** integrated for rapid prototyping and visualization.
+
+## Features
+- **Next.js 15** (TypeScript)
+- **Tailwind CSS v4** with custom design tokens
+- **App Router** with `src/` directory
+- **Untitled UI Components** - Full component library integrated
+- **Untitled UI Icons** - Professional icon library
+- **React Aria** - Accessible component foundation
+- **Theme System** - Dark/light mode support
+- **ESLint** configuration
+
+## Untitled UI Integration
+- ✅ Button components with multiple variants
+- ✅ Form components (inputs, textareas, selects)
+- ✅ Badge and tag components  
+- ✅ Avatar and user profile components
+- ✅ Progress indicators and loading states
+- ✅ Tooltip and dropdown components
+- ✅ Professional icon library (@untitledui/icons)
+- ✅ Custom design tokens and theme system
 
 ## Getting Started
 
@@ -18,14 +40,47 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
+```
+src/
+├── app/                    # Next.js App Router
+├── components/
+│   ├── base/              # Untitled UI base components
+│   ├── foundations/       # Design system foundations
+│   ├── marketing/         # Marketing-specific components
+│   └── application/       # Application-specific components
+├── hooks/                 # Custom React hooks
+├── providers/             # Theme and context providers
+├── styles/                # Global styles and themes
+└── utils/                 # Utility functions
+```
+
+## Using Components
+
+```tsx
+import { Button } from "@/components/base/buttons/button";
+
+export default function MyPage() {
+  return (
+    <div>
+      <Button color="primary" size="lg">
+        Get Started
+      </Button>
+    </div>
+  );
+}
+```
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Inter](https://fonts.google.com/specimen/Inter), optimized for UI design.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Untitled UI React](https://www.untitledui.com/react) - Component documentation
+- [Untitled UI Figma](https://www.untitledui.com/figma) - Design system
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
