@@ -37,6 +37,40 @@ body {
     font-variant-ligatures: contextual;
     -webkit-font-kerning: normal;
     font-kerning: normal;
+    scroll-behavior: smooth;
+}
+
+/* Smooth scroll for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Slow spin animation for profile picture ring */
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
 }
 
 /* Hide the default expand arrow on Safari.  */

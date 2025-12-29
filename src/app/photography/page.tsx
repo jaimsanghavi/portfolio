@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from '@/components';
+import Image from 'next/image';
+import { Card, FadeIn, StaggerContainer, StaggerItem, HoverScale } from '@/components';
 import { 
   ArrowLeftIcon,
   XMarkIcon,
@@ -11,6 +12,7 @@ import {
   ShareIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'motion/react';
 
 // Your actual photography collection
 const photographyImages = [
@@ -244,7 +246,12 @@ export default function Photography() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors">
       {/* Header */}
-      <header className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
+      <motion.header 
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <Link 
@@ -270,13 +277,13 @@ export default function Photography() {
             </a>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Main Content */}
       <main className="py-8 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Introduction */}
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Through My Lens
             </h2>
@@ -284,30 +291,47 @@ export default function Photography() {
               Beyond product management, I find joy in capturing moments that tell stories. 
               Each photograph represents a unique perspective on the world around us.
             </p>
-          </div>
+          </FadeIn>
 
           {/* Photo Gallery */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer staggerDelay={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {photographyImages.map((image) => (
-              <Card 
-                key={image.id} 
-                className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300"
-                onClick={() => openLightbox(image)}
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  <img 
-                    src={image.src} 
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </Card>
+              <StaggerItem key={image.id}>
+                <HoverScale scale={1.02}>
+                  <Card 
+                    className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300"
+                    onClick={() => openLightbox(image)}
+                  >
+                    <div className="relative aspect-square overflow-hidden">
+                      {image.src.endsWith('.heic') ? (
+                        // HEIC has limited browser support; fall back to <img>
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  )}
+                    </div>
+                  </Card>
+                </HoverScale>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* Call to Action */}
-          <div className="text-center mt-16">
-            <Card className="p-8 max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
+          <FadeIn delay={0.3} className="text-center mt-16">
+            <HoverScale>
+              <Card className="p-8 max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
               <CameraIcon className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                 Follow My Photography Journey
@@ -325,14 +349,30 @@ export default function Photography() {
                 Follow @xposure_trifecta
               </a>
             </Card>
-          </div>
+          </HoverScale>
+        </FadeIn>
         </div>
       </main>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full">
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-4xl max-h-full"
+              onClick={(e) => e.stopPropagation()}
+            >
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
@@ -357,15 +397,27 @@ export default function Photography() {
 
             {/* Image */}
             <div className="relative max-w-4xl max-h-[80vh]">
-              <img 
-                src={selectedImage.src} 
-                alt={selectedImage.alt}
-                className="w-full h-full object-contain rounded-lg"
-              />
+              {selectedImage.src.endsWith('.heic') ? (
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              ) : (
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  width={1600}
+                  height={1200}
+                  className="w-full h-full object-contain rounded-lg"
+                  priority
+                />
+              )}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+    </AnimatePresence>
     </div>
   );
 }
