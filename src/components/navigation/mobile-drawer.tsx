@@ -50,7 +50,7 @@ export function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 lg:hidden"
             onClick={onClose}
           />
 
@@ -60,7 +60,7 @@ export function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-[280px] bg-white dark:bg-gray-950 shadow-2xl z-50 md:hidden"
+            className="fixed top-0 right-0 h-full w-[85vw] max-w-[320px] bg-white dark:bg-gray-950 shadow-2xl z-50 lg:hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
@@ -88,7 +88,7 @@ export function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
                     },
                   },
                 }}
-                className="space-y-1"
+                className="space-y-2"
               >
                 {links.map((link) => (
                   <motion.li
@@ -101,7 +101,7 @@ export function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
                     {link.external ? (
                       <a
                         href={link.href}
-                        className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                        className="flex items-center px-4 py-4 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors active:bg-gray-200 dark:active:bg-gray-700"
                         onClick={() => handleLinkClick(link.href, true)}
                       >
                         {link.label}
@@ -109,7 +109,7 @@ export function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
                     ) : (
                       <a
                         href={link.href}
-                        className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                        className="flex items-center px-4 py-4 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors active:bg-gray-200 dark:active:bg-gray-700"
                         onClick={(e) => {
                           if (link.href.startsWith('#')) {
                             e.preventDefault();
@@ -128,7 +128,7 @@ export function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
             {/* Footer */}
             <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-800">
               <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-                © 2025 Jai M Sanghavi
+                © {new Date().getFullYear()} Jai M Sanghavi
               </p>
             </div>
           </motion.div>

@@ -1,12 +1,27 @@
 
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import "@/styles/globals.css";
 import { cx } from "@/utils/cx";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+// Distinctive display font - Outfit for headlines (geometric, modern, characterful)
+const outfit = Outfit({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-outfit",
+});
+
+// Refined body font - Plus Jakarta Sans (clean, professional, not generic)
+const plusJakarta = Plus_Jakarta_Sans({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-plus-jakarta",
+});
+
+// SF Pro proxy - Inter for Apple-inspired design variant
 const inter = Inter({
     subsets: ["latin"],
     display: "swap",
@@ -119,7 +134,7 @@ export default function RootLayout({
                                     "description": "Product Manager portfolio for Jai M Sanghavi: AI/ML, SaaS, case studies, and outcomes."
                                 }) }} />
                         </head>
-            <body className={cx(inter.variable, "bg-primary antialiased")}> 
+            <body className={cx(outfit.variable, plusJakarta.variable, inter.variable, "bg-primary antialiased")}> 
                 <RouteProvider>
                     <Theme>{children}</Theme>
                 </RouteProvider>
