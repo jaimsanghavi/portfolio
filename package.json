@@ -10,24 +10,14 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@heroicons/react": "^2.2.0",
-    "@tailwindcss/typography": "^0.5.19",
-    "@untitledui/file-icons": "^0.0.9",
-    "@untitledui/icons": "^0.0.22",
     "@vercel/speed-insights": "^2.0.0",
     "gsap": "^3.15.0",
-    "motion": "^12.38.0",
     "next": "^16.2.2",
     "next-themes": "^0.4.6",
     "react": "^19.2.4",
-    "react-aria": "^3.47.0",
-    "react-aria-components": "^1.16.0",
     "react-dom": "^19.2.4",
-    "react-hotkeys-hook": "^5.2.4",
     "sharp": "^0.34.5",
-    "tailwind-merge": "^3.5.0",
-    "tailwindcss-animate": "^1.0.7",
-    "tailwindcss-react-aria-components": "^2.0.1"
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
