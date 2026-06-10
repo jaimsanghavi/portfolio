@@ -15,7 +15,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(dark ? "light" : "dark")}
       className="font-mono text-[11px] tracking-[0.2em] text-graphite hover:text-accent transition-colors"
-      aria-label={dark ? "Switch to paper (light) theme" : "Switch to blueprint (dark) theme"}
+      aria-label={dark ? "Blueprint theme active — switch to paper" : "Paper theme active — switch to blueprint"}
     >
       {dark ? "● BLUEPRINT" : "○ PAPER"}
     </button>
