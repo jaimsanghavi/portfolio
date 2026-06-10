@@ -1,45 +1,38 @@
-# Jai M Sanghavi - Portfolio
+# Jai M Sanghavi — Portfolio
 
-Personal portfolio showcasing product management work, AI/ML projects, and photography.
+Personal portfolio: product management work, AI/ML impact stories, and photography.
 
-**[View Live Site →](https://jaimsanghavi-portfolio.vercel.app/)**
+**[Live site →](https://jaimsanghavi-portfolio.vercel.app/)**
 
-## Tech Stack
+## Stack
 
-- Next.js 15 (App Router)
-- TypeScript
-- Tailwind CSS v4
-- Untitled UI Components
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4 (custom "Clarity Grid" design system — see `DESIGN.md`)
+- GSAP + ScrollTrigger for motion
+- next-themes (paper / blueprint themes)
 
-## Quick Start
+## Develop
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:3000
+npm run build    # production build (type-checked)
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+## Photos
 
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server |
-| `npm run build` | Production build |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-
-## Deploy
+Gallery images live in `public/photography/` as WebP with a generated manifest
+(`src/data/photos.ts`). To add photos, drop originals in the folder and run:
 
 ```bash
-npx vercel --prod
+node scripts/process-photos.mjs
 ```
 
-Or connect your GitHub repo to [Vercel](https://vercel.com) for automatic deployments.
+New photos are converted to WebP, numbered after the existing set, and prepended
+to the manifest (the script never touches already-processed `photo-NN.webp` files).
+Requires macOS `sips` for HEIC input.
 
 ## Contact
 
-**Jai M Sanghavi**  
-[LinkedIn](https://www.linkedin.com/in/jaimsanghavi) · [Email](mailto:jaimsanghavi@gmail.com)
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Jai M Sanghavi** — [LinkedIn](https://www.linkedin.com/in/jaimsanghavi) · [Email](mailto:jaimsanghavi@gmail.com)
