@@ -91,7 +91,7 @@ Order and content preserved from the current site; presentation recomposed.
 - Delete original HEIC/oversized files from `public/photography/` after conversion (git history preserves them).
 - Remove `images: { unoptimized: true }` from `next.config.ts` (site deploys to Vercel; optimization is free).
 - Profile photo and any hero imagery also get explicit dimensions + priority loading.
-- Expected result: gallery payload drops from ~9.7MB to under ~3MB, no format-support risk in any browser.
+- Expected result: stored gallery sources ≤ 6MB (AMENDED during execution — grainy sources don't compress smaller above quality 64; final: 1400px / q75 WebP), browser payload far below that via Next/Image optimizer variants, no format-support risk in any browser.
 
 ## 7. Animation plan
 

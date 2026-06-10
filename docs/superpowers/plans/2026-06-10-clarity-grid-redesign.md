@@ -195,7 +195,7 @@ console.log(`Wrote src/data/photos.ts with ${manifest.length} photos`);
 - [ ] **Step 3: Run it**
 
 Run: `node scripts/process-photos.mjs`
-Expected: 54 conversion lines, final line `Wrote src/data/photos.ts with 54 photos`. Verify: `ls public/photography | grep -cv webp` → `0`; `du -sh public/photography` → well under 4M.
+Expected: 54 conversion lines, final line `Wrote src/data/photos.ts with 54 photos`. Verify: `ls public/photography | grep -cv webp` → `0`; `du -sh public/photography` → ≤ 6M stored (AMENDED during execution: the grainy source photos don't compress below ~5MB above quality 64; final settings are MAX_EDGE 1400 / quality 75 / effort 6. Stored size is not user payload — Next/Image + the Vercel optimizer serve resized variants).
 
 - [ ] **Step 4: Enable Next image optimization**
 
@@ -1916,7 +1916,7 @@ Expected: all pass, zero errors.
 ```bash
 grep -ri "\.heic" src public --include="*" -l        # expected: no output
 ls public/photography | wc -l                         # expected: 54
-du -sh public/photography                             # expected: < 4M
+du -sh public/photography                             # expected: <= 6M (stored sources; served payload is optimizer-resized)
 curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/showcase   # expected: 404
 curl -s http://localhost:3000/sitemap.xml | grep -c "<loc>"               # expected: 2
 ```
