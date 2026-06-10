@@ -31,7 +31,7 @@ for (let i = 0; i < files.length; i++) {
   const width = Math.round(meta.width * scale);
   const height = Math.round(meta.height * scale);
 
-  await sharp(readable).rotate().resize(width, height).webp({ quality: 64, effort: 6 }).toFile(outPath);
+  await sharp(readable).rotate().resize(width, height).webp({ quality: 75, effort: 6 }).toFile(outPath);
 
   const blur = await sharp(readable).rotate().resize(12).webp({ quality: 30 }).toBuffer();
   manifest.push({
