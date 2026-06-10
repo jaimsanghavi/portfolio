@@ -26,7 +26,6 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
           delay: 0.25,
           stagger: 0.045,
           ease: "back.out(1.6)",
-          clearProps: "transform",
         });
 
         for (const el of reveals) {

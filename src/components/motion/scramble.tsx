@@ -11,6 +11,7 @@ export function Scramble({ text, className }: { text: string; className?: string
   useGSAP(() => {
     const el = ref.current;
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let rafId = 0;
     gsap.timeline({ scrollTrigger: { trigger: el, start: "top 85%", once: true } }).call(() => {
       const target = text;
       const start = performance.now();
@@ -23,11 +24,12 @@ export function Scramble({ text, className }: { text: string; className?: string
           [...target.slice(settled)]
             .map((c) => (c === " " ? " " : POOL[Math.floor(Math.random() * POOL.length)]))
             .join("");
-        if (p < 1) requestAnimationFrame(tick);
+        if (p < 1) rafId = requestAnimationFrame(tick);
         else el.textContent = target;
       };
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     });
+    return () => cancelAnimationFrame(rafId);
   });
 
   return (
