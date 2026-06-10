@@ -37,7 +37,6 @@ export default function Photography() {
               type="button"
               onClick={() => setSelected(i)}
               className="group relative mb-3 block w-full overflow-hidden rounded-sm md:mb-4"
-              aria-label={`FRM ${String(i + 1).padStart(3, "0")} — open photo`}
             >
               <Image
                 src={p.src}
