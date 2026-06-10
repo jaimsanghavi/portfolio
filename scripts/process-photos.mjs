@@ -11,9 +11,18 @@ const MAX_EDGE = 1400;
 const PROCESSED_RE = /^photo-\d+\.webp$/i;
 
 // New inputs: image files that are NOT already processed outputs.
+// Sort: numeric filename prefix descending (Instagram exports = newest first);
+// names without a numeric prefix fall back to reverse-lexicographic, after numeric ones.
 const newFiles = readdirSync(SRC)
   .filter((f) => /\.(heic|jpg|jpeg|webp|png)$/i.test(f) && !PROCESSED_RE.test(f))
-  .sort((a, b) => parseInt(b, 10) - parseInt(a, 10)); // numeric prefix desc = newest first
+  .sort((a, b) => {
+    const na = parseInt(a, 10);
+    const nb = parseInt(b, 10);
+    if (isNaN(na) && isNaN(nb)) return b.localeCompare(a);
+    if (isNaN(na)) return 1;
+    if (isNaN(nb)) return -1;
+    return nb - na;
+  });
 
 if (newFiles.length === 0) {
   console.log("No new photos to process.");
