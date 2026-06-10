@@ -22,6 +22,15 @@ export function SiteNav() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-colors ${
@@ -60,8 +69,8 @@ export function SiteNav() {
       </nav>
 
       {open && (
-        <div className="fixed inset-0 top-[57px] z-40 bg-paper md:hidden">
-          <div className="flex flex-col gap-6 px-6 py-10">
+        <div className="fixed inset-0 z-40 bg-paper md:hidden">
+          <div className="flex flex-col gap-6 px-6 pb-10 pt-20">
             {navLinks.map((l, i) => (
               <a
                 key={l.href}
