@@ -5,7 +5,7 @@ import sharp from "sharp";
 
 const SRC = "public/photography";
 const TMP = ".photo-tmp";
-const MAX_EDGE = 1600;
+const MAX_EDGE = 1400;
 
 const files = readdirSync(SRC)
   .filter((f) => /\.(heic|jpg|jpeg|webp|png)$/i.test(f))
@@ -31,7 +31,7 @@ for (let i = 0; i < files.length; i++) {
   const width = Math.round(meta.width * scale);
   const height = Math.round(meta.height * scale);
 
-  await sharp(readable).rotate().resize(width, height).webp({ quality: 80 }).toFile(outPath);
+  await sharp(readable).rotate().resize(width, height).webp({ quality: 64, effort: 6 }).toFile(outPath);
 
   const blur = await sharp(readable).rotate().resize(12).webp({ quality: 30 }).toBuffer();
   manifest.push({
