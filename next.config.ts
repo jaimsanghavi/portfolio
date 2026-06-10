@@ -9,10 +9,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Image optimization - use unoptimized for static export compatibility
-  images: {
-    unoptimized: true,
-  },
 };
 
 export default nextConfig;
