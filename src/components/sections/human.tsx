@@ -41,7 +41,7 @@ export function Human() {
         <div className="mt-10 flex flex-wrap items-center gap-6" data-reveal="rise">
           <Link
             href="/photography"
-            className="rounded-sm bg-accent px-6 py-3 font-mono text-xs tracking-[0.2em] text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
+            className="rounded-sm bg-accent px-6 py-3 font-mono text-xs tracking-[0.2em] text-white dark:text-darkroom transition-transform hover:scale-[1.03] active:scale-[0.98]"
           >
             ENTER THE DARKROOM →
           </Link>

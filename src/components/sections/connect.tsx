@@ -16,7 +16,7 @@ export function Connect() {
       <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row" data-reveal="rise">
         <a
           href={`mailto:${contact.email}`}
-          className="rounded-sm bg-accent px-8 py-4 font-mono text-xs tracking-[0.2em] text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
+          className="rounded-sm bg-accent px-8 py-4 font-mono text-xs tracking-[0.2em] text-white dark:text-darkroom transition-transform hover:scale-[1.03] active:scale-[0.98]"
         >
           START A CONVERSATION →
         </a>

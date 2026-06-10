@@ -14,11 +14,12 @@ export function Impact() {
       mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         const panels = gsap.utils.toArray<HTMLElement>(".impact-panel");
         panels.forEach((panel, i) => {
+          if (i === panels.length - 1) return; // last panel scrolls naturally
           ScrollTrigger.create({
             trigger: panel,
             start: "top top",
-            end: i === panels.length - 1 ? "bottom top" : "bottom 40%",
-            pin: i !== panels.length - 1,
+            end: "bottom 40%",
+            pin: true,
             pinSpacing: false,
           });
         });
