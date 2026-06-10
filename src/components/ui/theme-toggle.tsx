@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- canonical next-themes hydration guard; runs once on mount only
   useEffect(() => setMounted(true), []);
   const dark = mounted && resolvedTheme === "dark";
 
