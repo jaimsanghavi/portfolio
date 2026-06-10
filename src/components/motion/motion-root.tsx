@@ -34,7 +34,11 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
           const trigger = { trigger: el, start: "top 85%", once: true };
 
           if (variant === "draw") {
-            const geoms = el.querySelectorAll<SVGGeometryElement>("path, line, circle, rect, ellipse, polyline");
+            // Intentionally dashed strokes are excluded: the draw technique
+            // overwrites stroke-dasharray, which would turn them solid.
+            const geoms = Array.from(
+              el.querySelectorAll<SVGGeometryElement>("path, line, circle, rect, ellipse, polyline")
+            ).filter((g) => !g.hasAttribute("stroke-dasharray"));
             gsap.set(el, { opacity: 1 });
             geoms.forEach((g) => {
               const len = g.getTotalLength();
