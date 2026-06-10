@@ -52,9 +52,10 @@ html.js [data-reveal] {
   opacity: 0;
 }
 
-html.js [data-scatter-letter] {
+/* The scattered word is the resting design, not a transition state:
+   it stays scattered for everyone — no JS, reduced motion, always. */
+[data-scatter-letter] {
   transform: rotate(var(--scatter-r)) translateY(var(--scatter-y));
-  opacity: 0.55;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,10 +63,6 @@ html.js [data-scatter-letter] {
     scroll-behavior: auto;
   }
   html.js [data-reveal] {
-    opacity: 1;
-  }
-  html.js [data-scatter-letter] {
-    transform: none;
     opacity: 1;
   }
 }

@@ -18,10 +18,12 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
           return;
         }
 
-        gsap.to(letters, {
-          rotate: 0,
-          y: 0,
-          opacity: 1,
+        // Letters settle INTO their scattered resting positions (the scatter
+        // is the design); relative offsets animate back to the CSS transform.
+        gsap.from(letters, {
+          opacity: 0,
+          y: "-=18",
+          rotation: "+=14",
           duration: 0.7,
           delay: 0.25,
           stagger: 0.045,

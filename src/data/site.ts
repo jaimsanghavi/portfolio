@@ -6,10 +6,10 @@ export const navLinks = [
   { href: "#connect", label: "Connect" },
 ];
 
-export const heroStats: { end: number; prefix?: string; suffix: string; label: string }[] = [
-  { end: 6, suffix: "+", label: "Years" },
-  { end: 4, suffix: "M+", label: "Users served" },
-  { end: 20, prefix: "$", suffix: "M+", label: "ARR influenced" },
+export const heroStats: { end: number; prefix?: string; unit: string; label: string }[] = [
+  { end: 6, unit: "", label: "Years" },
+  { end: 4, unit: "M", label: "Users served" },
+  { end: 20, prefix: "$", unit: "M", label: "ARR influenced" },
 ];
 
 export const originParagraphs = [

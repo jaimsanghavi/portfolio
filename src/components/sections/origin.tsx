@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { originParagraphs, timeline } from "@/data/site";
 import { SectionLabel } from "@/components/ui/section-label";
 
@@ -9,12 +10,29 @@ export function Origin() {
         From automating tasks to <span className="text-graphite">orchestrating outcomes</span>
       </h2>
 
-      <div className="mt-12 max-w-2xl space-y-6">
-        {originParagraphs.map((p, i) => (
-          <p key={i} className="text-lg leading-relaxed text-graphite md:text-xl" data-reveal="rise" data-reveal-delay={`${i * 0.12}`}>
-            {p}
-          </p>
-        ))}
+      <div className="mt-12 flex flex-col-reverse items-start gap-10 md:flex-row md:gap-16">
+        <div className="max-w-2xl space-y-6">
+          {originParagraphs.map((p, i) => (
+            <p key={i} className="text-lg leading-relaxed text-graphite md:text-xl" data-reveal="rise" data-reveal-delay={`${i * 0.12}`}>
+              {p}
+            </p>
+          ))}
+        </div>
+
+        <div className="relative shrink-0" data-reveal="rise">
+          <div className="relative h-32 w-32 overflow-hidden rounded-full md:h-40 md:w-40">
+            <Image src="/Jai_Profile.jpeg" alt="Jai M Sanghavi" fill priority className="object-cover object-top" sizes="160px" />
+          </div>
+          <svg
+            viewBox="0 0 140 140"
+            className="absolute -inset-3 h-[calc(100%+24px)] w-[calc(100%+24px)] text-accent"
+            aria-hidden
+            data-reveal="draw"
+          >
+            <ellipse cx="70" cy="70" rx="64" ry="58" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(-7 70 70)" />
+          </svg>
+          <p className="mt-4 text-center font-mono text-[10px] tracking-[0.2em] text-draft">fig. 1.0 — the author</p>
+        </div>
       </div>
 
       <div className="relative mt-20 md:mt-28">

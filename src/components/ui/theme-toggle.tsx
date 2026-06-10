@@ -14,10 +14,14 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(dark ? "light" : "dark")}
-      className="font-mono text-[11px] tracking-[0.2em] text-graphite hover:text-accent transition-colors"
-      aria-label={dark ? "Blueprint theme active — switch to paper" : "Paper theme active — switch to blueprint"}
+      className="font-mono text-[11px] tracking-[0.2em] transition-colors"
     >
-      {dark ? "● BLUEPRINT" : "○ PAPER"}
+      <span className="text-accent" aria-hidden>
+        ●{" "}
+      </span>
+      <span className={dark ? "text-graphite" : "text-accent"}>PAPER</span>
+      <span className="text-graphite"> / </span>
+      <span className={dark ? "text-accent" : "text-graphite"}>BLUEPRINT</span>
     </button>
   );
 }
