@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { readdirSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -51,7 +51,7 @@ try {
     let readable = input;
     if (/\.heic$/i.test(input)) {
       readable = path.join(TMP, `${i}.png`);
-      execSync(`sips -s format png "${input}" --out "${readable}"`, { stdio: "pipe" });
+      execFileSync("sips", ["-s", "format", "png", input, "--out", readable], { stdio: "pipe" });
     }
 
     const img = sharp(readable).rotate();

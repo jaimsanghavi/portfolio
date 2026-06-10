@@ -1,5 +1,5 @@
 import { craftAreas } from "@/data/site";
-import { SectionLabel } from "@/components/sections/origin";
+import { SectionLabel } from "@/components/ui/section-label";
 
 const icons: Record<string, React.ReactNode> = {
   spec: (

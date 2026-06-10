@@ -52,6 +52,7 @@ export function Lightbox({ photos, index, onClose, onNavigate }: LightboxProps) 
           height={photo.height}
           placeholder="blur"
           blurDataURL={photo.blurDataURL}
+          sizes="90vw"
           className="max-h-[82vh] w-auto rounded-sm object-contain"
           priority
         />

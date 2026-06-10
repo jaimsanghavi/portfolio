@@ -1,5 +1,5 @@
 import { toolkit, contact } from "@/data/site";
-import { SectionLabel } from "@/components/sections/origin";
+import { SectionLabel } from "@/components/ui/section-label";
 
 export function Toolkit() {
   return (

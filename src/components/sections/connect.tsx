@@ -1,11 +1,10 @@
 import { contact } from "@/data/site";
+import { SectionLabel } from "@/components/ui/section-label";
 
 export function Connect() {
   return (
     <section id="connect" className="relative mx-auto max-w-6xl px-5 py-28 text-center md:py-44">
-      <p className="mb-10 font-mono text-[11px] tracking-[0.25em] text-accent" data-reveal="rise">
-        SEC.06 — CONNECT
-      </p>
+      <SectionLabel no="06" title="CONNECT" />
       <h2 className="text-4xl font-medium leading-[1.05] tracking-tight md:text-7xl" data-reveal="rise">
         Let&apos;s build <span className="relative inline-block">clarity<span className="absolute -bottom-1 left-0 h-[4px] w-full bg-accent" /></span>
         <span className="text-accent">.</span>

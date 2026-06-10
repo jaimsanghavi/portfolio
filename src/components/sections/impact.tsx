@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { stories } from "@/data/site";
 import { Scramble } from "@/components/motion/scramble";
+import { SectionLabel } from "@/components/ui/section-label";
 
 export function Impact() {
   const scope = useRef<HTMLElement>(null);
@@ -31,9 +32,7 @@ export function Impact() {
   return (
     <section id="impact" ref={scope} className="relative">
       <div className="mx-auto max-w-6xl px-5 pt-24 md:pt-36">
-        <p className="mb-10 font-mono text-[11px] tracking-[0.25em] text-accent" data-reveal="rise">
-          SEC.04 — THE IMPACT
-        </p>
+        <SectionLabel no="04" title="THE IMPACT" />
         <h2 className="text-3xl font-medium tracking-tight md:text-5xl" data-reveal="rise">
           Three transformations
         </h2>

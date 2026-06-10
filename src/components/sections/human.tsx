@@ -2,15 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { photos } from "@/data/photos";
 import { contact } from "@/data/site";
+import { SectionLabel } from "@/components/ui/section-label";
 
 export function Human() {
   const strip = photos.slice(0, 5);
   return (
     <section className="relative z-10 bg-darkroom px-5 py-24 text-darkroom-ink md:py-36">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-10 font-mono text-[11px] tracking-[0.25em] text-accent" data-reveal="rise">
-          SEC.05 — THE HUMAN
-        </p>
+        <SectionLabel no="05" title="THE HUMAN" />
         <h2 className="text-3xl font-medium tracking-tight md:text-5xl" data-reveal="rise">
           After hours, I trade grids for grain
         </h2>
@@ -29,6 +28,7 @@ export function Human() {
                 height={280}
                 placeholder="blur"
                 blurDataURL={p.blurDataURL}
+                sizes="400px"
                 className="h-56 w-auto rounded-sm object-cover opacity-90 transition-opacity group-hover:opacity-100 md:h-72"
               />
               <span className="absolute bottom-2 left-2 font-mono text-[10px] tracking-[0.2em] text-darkroom-ink/80 opacity-0 transition-opacity group-hover:opacity-100">
