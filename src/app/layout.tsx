@@ -103,8 +103,6 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
                         <head>
-                                <meta name="google-site-verification" content="google62dc9156b89ed173.html" />
-                                <meta name="keywords" content="Jai M Sanghavi, Product Manager, Portfolio, AI, ML, GenAI, SaaS, Enterprise, Experience Design, Case Studies, Product Strategy, Agile, CSPO, BXD, Edgeverve, Deloitte Studios, TCS, Resume, Leadership, User Research, Time to Insight, Activation, Adoption" />
                                 <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
                                     "@context": "https://schema.org",
                                     "@type": "Person",

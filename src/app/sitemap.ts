@@ -11,7 +11,7 @@ function getBaseUrl() {
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getBaseUrl();
   const now = new Date().toISOString();
-  const routes = ["/", "/showcase", "/photography"].map((path) => ({
+  const routes = ["/", "/photography"].map((path) => ({
     url: `${base}${path}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
