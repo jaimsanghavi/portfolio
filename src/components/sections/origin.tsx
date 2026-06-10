@@ -19,19 +19,21 @@ export function Origin() {
           ))}
         </div>
 
-        <div className="relative shrink-0" data-reveal="rise">
-          <div className="relative h-32 w-32 overflow-hidden rounded-full md:h-40 md:w-40">
-            <Image src="/Jai_Profile.jpeg" alt="Jai M Sanghavi" fill priority className="object-cover object-top" sizes="160px" />
+        <div className="shrink-0" data-reveal="rise">
+          <div className="relative h-32 w-32 md:h-40 md:w-40">
+            <div className="relative h-full w-full overflow-hidden rounded-full">
+              <Image src="/Jai_Profile.jpeg" alt="Jai M Sanghavi" fill priority className="object-cover object-top" sizes="160px" />
+            </div>
+            <svg
+              viewBox="0 0 140 140"
+              className="absolute -inset-4 h-[calc(100%+32px)] w-[calc(100%+32px)] text-accent"
+              aria-hidden
+              data-reveal="draw"
+            >
+              <ellipse cx="70" cy="70" rx="65" ry="60" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(-7 70 70)" />
+            </svg>
           </div>
-          <svg
-            viewBox="0 0 140 140"
-            className="absolute -inset-3 h-[calc(100%+24px)] w-[calc(100%+24px)] text-accent"
-            aria-hidden
-            data-reveal="draw"
-          >
-            <ellipse cx="70" cy="70" rx="64" ry="58" fill="none" stroke="currentColor" strokeWidth="2" transform="rotate(-7 70 70)" />
-          </svg>
-          <p className="mt-4 text-center font-mono text-[10px] tracking-[0.2em] text-draft">fig. 1.0 — the author</p>
+          <p className="mt-5 text-center font-mono text-[10px] tracking-[0.2em] text-draft">fig. 1.0 — the author</p>
         </div>
       </div>
 
