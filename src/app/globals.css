@@ -29,10 +29,11 @@
 
 html {
   scroll-behavior: smooth;
+  background: #08080a;
 }
 
 body {
-  background: var(--color-paper);
+  background: #08080a;
   color: var(--color-ink);
   font-family: var(--font-sans);
 }
