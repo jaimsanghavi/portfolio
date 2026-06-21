@@ -25,7 +25,6 @@ const VERT = /* glsl */ `
   uniform float uTime;
   uniform float uChaos;
   uniform float uSize;
-  uniform vec3 uCursor;
   varying vec3 vCol;
   varying float vA;
 
@@ -36,12 +35,6 @@ const VERT = /* glsl */ `
     float t = uTime * 0.3 + aRand * 6.2831;
     vec3 drift = vec3(sin(t + pos.y * 0.6), cos(t * 1.1 + pos.x * 0.6), sin(t * 0.8 + pos.z));
     pos += drift * (0.04 + uChaos * 1.5) * (0.35 + aRand);
-
-    float d = distance(pos.xy, uCursor.xy);
-    if (d < 1.1) {
-      vec2 dir = normalize(pos.xy - uCursor.xy + 0.0001);
-      pos.xy += dir * (1.1 - d) * 0.42;
-    }
 
     vCol = mix(aColFrom, aColTo, m);
     vA = 0.55 + 0.45 * aRand;
@@ -123,7 +116,6 @@ function Particles({ count, stage }: { count: number; stage: number }) {
         uTime: { value: 0 },
         uChaos: { value: 0.9 },
         uSize: { value: 2.2 * Math.min(window.devicePixelRatio || 1, 2) },
-        uCursor: { value: new THREE.Vector3(999, 999, 0) },
       },
       vertexShader: VERT,
       fragmentShader: FRAG,
@@ -185,28 +177,15 @@ function Particles({ count, stage }: { count: number; stage: number }) {
     current.current = stage;
   }, [stage, stages, uniforms]);
 
-  const FAR = new THREE.Vector3(9999, 9999, 0);
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     uniforms.uTime.value += Math.min(delta, 0.05);
-    const cursor = uniforms.uCursor.value as THREE.Vector3;
+    // Subtle parallax tilt toward the pointer — no displacement, so no "hole".
     const pt = pointer.current;
-    if (pt.active) {
-      // Map the real pointer onto the z=0 plane.
-      const vec = new THREE.Vector3(pt.x, pt.y, 0.5).unproject(state.camera);
-      const dir = vec.sub(state.camera.position).normalize();
-      const dist = -state.camera.position.z / dir.z;
-      const world = state.camera.position.clone().add(dir.multiplyScalar(dist));
-      cursor.lerp(world, 0.18);
-    } else {
-      // No active pointer: park the repulsion far away (prevents a hole at center).
-      cursor.lerp(FAR, 0.1);
-    }
-
     if (ref.current) {
       const px = pt.active ? pt.x : 0;
       const py = pt.active ? pt.y : 0;
-      ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, px * 0.1, 0.04);
-      ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, -py * 0.06, 0.04);
+      ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, px * 0.08, 0.04);
+      ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, -py * 0.05, 0.04);
     }
   });
 
